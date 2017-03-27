@@ -1,3 +1,133 @@
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+----------------------------------------------JPN START -------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+#PDフロントエンドベースプロジェクト
+
+Perficientデジタルフロントエンドベースプロジェクトは、コンセプトの証明のためのサンプルまたはスタータープロジェクトであり、Perficient Digitalでプロジェクトのフロントエンドコードを構造化するためのリファレンスガイドです。物事が急激に変化し、単一の基盤がすべてのプロジェクトに適合しないので、石で設定されていません。
+
+**詳細については、[Perficient Digital Front End Standards]（https://github.com/EnlightenAgency/EnlBase/wiki/Enlighten-Front-End-Standards）Wikiを参照してください。**
+
+###推奨ファイル構造：
+
+    | -Dist - 配布ファイルまたはビルドファイル。生成されたコードのみがdistフォルダに属します。
+    | -Src - 開発ファイル
+        | -css
+        | - イメージ
+        | -js
+    | - ドキュメント - ドキュメントまたは情報ファイル
+    | - テスト - 単体テスト
+
+＃＃＃クイックスタート
+1.基本プロジェクトgit repoをダウンロードします。
+2. `npm install`を実行します。
+3.すべての名前空間ファイルの名前を「ENL.base.js」、「ENL.init.js」、「ENL.styles.scss」に変更します。名前空間をプロジェクトの新しい名前空間（つまり、 `THF.styles.scss`、` UDR.base.js`、 `UMA.init.js`など）に変更します。
+4.プロジェクト全体を通して、特にGulpfile.jsと `index.html`の名前空間ファイルへの参照をすべて変更します。
+5.名前空間のルートオブジェクトをJavaScript（ `index.html`で定義され、` ENL.base.js`で設定され、 `ENL.init.js`で参照されます）で変更します。 、ページ、またはutils）
+6. `gulp`を実行します。
+7。 ...
+8.利益
+
+###ルートに属するファイル：
+
+  - `.git`（または他のソースコントロール）
+  - `.gitignore`（gitを使用している場合）
+  - `README.md` - プロジェクトノート、セットアップ指示、変更履歴
+  - `package.json` - ノードの依存関係とビルドツール用
+  - `Gulpfile.js（またはGruntfile.js）` - ビルドツールファイル
+  - `.eslintrc`（eslintルールの場合 - eslintを使用している場合）
+
+###ソース管理するべきではないファイル：
+
+  - `/ node_modules` - ノードの依存関係とビルドツール用
+  - `/ bower_components` - クライアントパッケージにbowerを使用する場合
+  - `/ dist` - ソースコントロールをデプロイメントに使用しない限り、コンパイルされたバージョンはソース管理されていない可能性があります
+
+###ノードのバージョン管理
+
+    最後に知られている作業（2011/11/22）：
+     - ノード：v6.9.1（LTS）
+    https://github.com/nodejs/LTS#lts_schedule
+         - npm：3.10.5
+         - https://www.npmjs.com/package/npm
+
+    スイッチノードのバージョン（NVMを使用） - "nvm use [version]"注：必要なノードのバージョンがインストールされていない場合は、 "nvm install [version]"
+アップグレード/ダウングレードNPM - 「npm install -g npm @ [version]」
+
+###インストール：
+
+  - `npm install`を実行して、` package.json`ファイル経由でgulpパッケージをインストールします。
+  - サイトの構築に必要な依存関係を取得する方法については、[Gulp Setup]（https://github.com/EnlightenAgency/EnlBase/wiki/Gulp-Setup）を参照してください。
+
+### Dev依存関係の定義
+
+- gulp：タスクやビルドのランナーで、CSSやJavaScriptの縮小、ファイル圧縮などのタスクを自動化できます。
+- https://github.com/gulpjs/gulp/tree/master/docs
+- gulp-autoprefixer：CSSプロパティにverdo prefixes（-webkit-、-mos-、-ms-）オプションを追加することで、ブラウザ間の互換性を保証します
+- https://github.com/postcss/autoprefixer
+- gulp-concat：ファイルは、gulp.src関数で指定された順序で連結されます（例：return gulp.src（['./ lib / file3.js'、 './lib/file1.js' 、 './lib/file2.js']））
+- https://github.com/contra/gulp-concat
+- gulp-eslint：コードlintingは、特定のスタイルガイドラインに従わない問題のあるパターンやコードを見つけるために使用されます。
+- https://www.npmjs.com/package/gulp-eslint
+- http://eslint.org/docs/about/
+- gulp-filesize：人間が読めるString形式のファイルをコンソールにログ出力する拡張機能。
+- https://github.com/Metrime/gulp-filesize
+- gulp-imagemin：GIF、JPEG、PNG、SVGイメージを圧縮する
+- https://www.npmjs.com/package/gulp-imagemin
+- gulp-livereload：CSS、イメージファイルなどを保存した後、自動的にブラウザを更新します。
+- https://www.npmjs.com/package/gulp-livereload
+- gulp-load-plugins：パッケージの依存関係からgulpプラグインを読み込んで、選択したオブジェクトにそれらを添付します。
+- https://www.npmjs.com/package/gulp-load-plugins
+- gulp-sass：SASSファイルをCSSファイルにコンパイルする
+- https://www.npmjs.com/package/gulp-sass
+- gulp-sourcemaps：あなたのCSSスタイルをdistのコンパイル済み.cssの代わりに正しい.scssファイルにマップします。例：ブラウジングコンソールは、あなたのボディスタイルがstyles.css行106ではなくglobal.scss 28行から来ていることを明らかにします。これにより、あなたのスタイルを「デバッグ」の方がずっと簡単に追跡できます。
+- https://www.npmjs.com/package/gulp-sourcemaps
+- gulp-svg-sprite：複数のSVGファイルを取り込んで最適化し、いくつかの種類のSVGスプライトにベイク処理するsvg-spriteをラップするGulpプラグインです。
+- https://github.com/jkphl/gulp-svg-sprite
+- gulp-uglify：JSファイルを縮小する
+- https://www.npmjs.com/package/gulp-uglify
+- gulp-util：gulpプラグインのユーティリティ（gutil.log、gutil.replaceExtension）
+- https://www.npmjs.com/package/gulp-util
+- gulp-webserver：LiveReloadを使用してローカルWebサーバーを実行するGulpプラグイン
+- https://www.npmjs.com/package/gulp-webserver
+- imagemin-gifsicle：画像最適化のオプションを追加しました - g
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+----------------------------------------------JPN END -------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+----------------------------------------------ENG -------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 #PD Front End Base Project
 
 The Perficient Digital Front End Base Project is a sample or starter project for proof of concept and a reference guide for structuring a project's front end code at Perficient Digital.  It is not set in stone, as things change too fast, and a single base will not fit all projects.  
